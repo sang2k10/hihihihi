@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just for you</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcccb; /* Nền hồng nhạt */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Ẩn thanh cuộn */
+            transition: background-color 0.5s ease; /* Hiệu ứng chuyển màu nền */
+        }
+        .header {
+            position: absolute;
+            top: 10%; /* Đặt ở trên cùng bên ngoài hình chữ nhật, chỉnh xuống một chút */
+            left: 50%; /* Căn giữa theo chiều ngang */
+            transform: translateX(-50%); /* Căn giữa hoàn toàn */
+            font-size: 300px; /* Kích thước chữ lớn hơn */
+            color: #000; /* Màu chữ */
+            text-align: center; /* Căn giữa */
+            display: none; /* Ẩn tiêu đề ban đầu */
+        }
+        .subheader {
+            position: absolute;
+            top: 25%; /* Đặt dưới tiêu đề */
+            left: 50%; /* Căn giữa theo chiều ngang */
+            transform: translateX(-50%); /* Căn giữa hoàn toàn */
+            font-size: 100px; /* Kích thước chữ nhỏ hơn */
+            color: #000; /* Màu chữ */
+            text-align: center; /* Căn giữa */
+            display: none; /* Ẩn tiêu đề phụ ban đầu */
+        }
+        .image-container {
+            display: none; /* Ẩn hình ảnh ban đầu */
+            position: absolute; /* Vị trí tuyệt đối */
+            left: 60%; /* Căn giữa theo chiều ngang */
+            top: 20%; /* Căn giữa theo chiều dọc, lên một chút */
+            transform: translate(-50%, -50%); /* Căn giữa hoàn toàn */
+            opacity: 0; /* Khởi tạo độ mờ cho hình ảnh */
+            transition: opacity 0.5s ease; /* Hiệu ứng chuyển độ mờ */
+        }
+        .image-container img {
+            max-width: 45%; /* Kích thước tối đa của hình ảnh (có thể thay đổi) */
+            height: auto; /* Để hình ảnh giữ tỷ lệ */
+        }
+        .container {
+            position: relative;
+            width: 900px; /* Chiều rộng hình chữ nhật gấp đôi */
+            height: 600px; /* Chiều cao hình chữ nhật gấp đôi */
+            background-color: white; /* Màu hình chữ nhật */
+            border: 2px solid #999; /* Viền cho hình chữ nhật */
+            border-radius: 5px; /* Bo góc nhẹ cho hình chữ nhật */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thêm bóng cho hình chữ nhật */
+            cursor: pointer; /* Con trỏ chuột dạng tay */
+            overflow: hidden; /* Ẩn phần nội dung vượt ra ngoài */
+            perspective: 1000px; /* Tạo không gian 3D */
+        }
+        .triangle {
+            position: absolute;
+            width: 0; /* Kích thước ban đầu */
+            height: 0; /* Kích thước ban đầu */
+            border-left: 450px solid transparent; /* Tạo phần bên trái của hình tam giác lớn hơn */
+            border-right: 450px solid transparent; /* Tạo phần bên phải của hình tam giác lớn hơn */
+            border-top: 240px solid #b0b0b0; /* Màu xám nhạt cho hình tam giác (đỉnh ở giữa và hướng xuống dưới) */
+            left: 0; /* Đặt bên trái */
+            top: 0; /* Đặt phần trên */
+            transition: transform 0.8s ease; /* Thêm hiệu ứng chuyển động mềm mại */
+            transform-origin: 50% 0; /* Đặt điểm lật ở giữa dưới cùng */
+        }
+        .container.open .triangle {
+            transform: rotateX(180deg); /* Lật hình tam giác lên trên */
+        }
+        .message {
+            display: none; /* Ẩn nội dung ban đầu */
+            text-align: center; /* Căn giữa nội dung */
+            font-size: 150px; /* Thay đổi kích thước chữ */
+            position: absolute; /* Vị trí tuyệt đối để căn giữa */
+            left: 50%; /* Căn giữa theo chiều ngang */
+            top: 50%; /* Căn giữa theo chiều dọc */
+            transform: translate(-50%, -50%); /* Căn giữa hoàn toàn */
+            margin: 0; /* Đặt lề bằng 0 để căn giữa chính xác */
+        }
+    </style>
+</head>
+<body>
+
+<div class="header" id="header"></div> <!-- Dòng chữ nổi bật -->
+<div class="subheader" id="subheader"></div> <!-- Dòng chữ phụ -->
+<div class="image-container" id="imageContainer">
+    <img src="./hinh.jpg" alt="Hình ảnh của bạn" id="headerImage"> <!-- Thay đường dẫn hình ảnh -->
+</div>
+<div class="container" onclick="toggleOpen()">
+    <div class="triangle"></div> <!-- Hình tam giác màu xám nhạt -->
+</div>
+<div class="message" id="message"></div> <!-- Phần tử hiển thị nội dung -->
+
+<script>
+    function toggleOpen() {
+        const container = document.querySelector('.container');
+        const messageDiv = document.getElementById('message');
+        const headerDiv = document.getElementById('header');
+        const subheaderDiv = document.getElementById('subheader'); // Phần tử tiêu đề phụ
+        const imageContainer = document.getElementById('imageContainer');
+
+        container.classList.toggle('open');
+
+        // Chờ cho hiệu ứng lật tam giác hoàn tất trước khi chuyển nền
+        if (container.classList.contains('open')) {
+            setTimeout(() => {
+                // Chuyển nền thành hồng đậm
+                document.body.style.backgroundColor = "#ee82ee"; // Thay đổi nền thành màu hồng đậm
+                container.style.display = 'none'; // Ẩn hình chữ nhật
+                headerDiv.style.display = 'none'; // Xóa tiêu đề
+                subheaderDiv.style.display = 'none'; // Xóa tiêu đề phụ
+                imageContainer.style.display = 'block'; // Hiện hình ảnh
+
+                // Hiển thị hình ảnh sau khi dòng chữ đã xuất hiện 50%
+                setTimeout(() => {
+                    imageContainer.style.opacity = 1; // Hiện hình ảnh
+                }, 400); // Thời gian chờ để hình ảnh xuất hiện (có thể điều chỉnh)
+                
+                displayMessage(); // Hiển thị nội dung
+            }, 800); // Thời gian chờ (800ms) phải bằng thời gian hiệu ứng lật tam giác
+        }
+    }
+
+    function displayHeader() {
+        const headerDiv = document.getElementById('header');
+        const subheaderDiv = document.getElementById('subheader'); // Phần tử tiêu đề phụ
+        headerDiv.style.display = 'block'; // Hiện phần tử tiêu đề
+        subheaderDiv.style.display = 'block'; // Hiện phần tử tiêu đề phụ
+
+        // Nội dung tiêu đề của bạn
+        const header = "Thư Gửi Bạn!";
+        const subheader = "Đây là một thông điệp đặc biệt!"; // Nội dung tiêu đề phụ
+
+        // Hiển thị từng chữ cái cho tiêu đề
+        let index = 0;
+        function showNextCharacter() {
+            if (index < header.length) {
+                headerDiv.innerHTML += header.charAt(index);
+                index++;
+                setTimeout(showNextCharacter, 150); // Thời gian hiển thị giữa các ký tự (150ms)
+            }
+        }
+
+        showNextCharacter(); // Bắt đầu hiển thị nội dung
+
+        // Hiển thị từng chữ cái cho tiêu đề phụ
+        let subIndex = 0;
+        function showNextSubCharacter() {
+            if (subIndex < subheader.length) {
+                subheaderDiv.innerHTML += subheader.charAt(subIndex);
+                subIndex++;
+                setTimeout(showNextSubCharacter, 150); // Thời gian hiển thị giữa các ký tự (150ms)
+            }
+        }
+
+        showNextSubCharacter(); // Bắt đầu hiển thị nội dung tiêu đề phụ
+    }
+
+    function displayMessage() {
+        const messageDiv = document.getElementById('message');
+        messageDiv.style.display = 'block'; // Hiện phần tử nội dung
+
+        // Nội dung của bạn
+        const message = "Chào bạn, đây là nội dung thư mà bạn muốn hiển thị khi tam giác được mở. Cảm ơn bạn đã đọc!";
+
+        // Hiển thị từng chữ cái
+        let index = 0;
+        function showNextCharacter() {
+            if (index < message.length) {
+                messageDiv.innerHTML += message.charAt(index);
+                index++;
+                setTimeout(showNextCharacter, 100); // Thời gian hiển thị giữa các ký tự (100ms)
+            }
+        }
+
+        showNextCharacter(); // Bắt đầu hiển thị nội dung
+    }
+
+    // Gọi hàm để hiển thị tiêu đề
+    displayHeader();
+
+</script>
+
+</body>
+</html>
