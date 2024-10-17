@@ -21,17 +21,17 @@
             top: 10%; /* Đặt ở trên cùng bên ngoài hình chữ nhật, chỉnh xuống một chút */
             left: 50%; /* Căn giữa theo chiều ngang */
             transform: translateX(-50%); /* Căn giữa hoàn toàn */
-            font-size: 150px; /* Kích thước chữ lớn hơn */
+            font-size: 150px; /* Kích thước chữ nhỏ hơn */
             color: #000; /* Màu chữ */
             text-align: center; /* Căn giữa */
             display: none; /* Ẩn tiêu đề ban đầu */
         }
         .subheader {
             position: absolute;
-            top: 25%; /* Đặt dưới tiêu đề */
+            top: 20%; /* Đặt dưới tiêu đề */
             left: 50%; /* Căn giữa theo chiều ngang */
             transform: translateX(-50%); /* Căn giữa hoàn toàn */
-            font-size: 50px; /* Kích thước chữ nhỏ hơn */
+            font-size: 75px; /* Kích thước chữ nhỏ hơn */
             color: #000; /* Màu chữ */
             text-align: center; /* Căn giữa */
             display: none; /* Ẩn tiêu đề phụ ban đầu */
@@ -46,28 +46,28 @@
             transition: opacity 0.5s ease; /* Hiệu ứng chuyển độ mờ */
         }
         .image-container img {
-            max-width: 45%; /* Kích thước tối đa của hình ảnh (có thể thay đổi) */
+            max-width: 40%; /* Kích thước tối đa của hình ảnh (có thể thay đổi) */
             height: auto; /* Để hình ảnh giữ tỷ lệ */
         }
         .container {
             position: relative;
-            width: 450px; /* Chiều rộng hình chữ nhật gấp đôi */
-            height: 300px; /* Chiều cao hình chữ nhật gấp đôi */
+            width: 600px; /* Chiều rộng hình chữ nhật gấp đôi */
+            height: 400px; /* Chiều cao hình chữ nhật gấp đôi */
             background-color: white; /* Màu hình chữ nhật */
             border: 2px solid #999; /* Viền cho hình chữ nhật */
             border-radius: 5px; /* Bo góc nhẹ cho hình chữ nhật */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thêm bóng cho hình chữ nhật */
             cursor: pointer; /* Con trỏ chuột dạng tay */
             overflow: hidden; /* Ẩn phần nội dung vượt ra ngoài */
-            perspective: 5000px; /* Tạo không gian 3D */
+            perspective: 1000px; /* Tạo không gian 3D */
         }
         .triangle {
             position: absolute;
             width: 0; /* Kích thước ban đầu */
             height: 0; /* Kích thước ban đầu */
-            border-left: 275px solid transparent; /* Tạo phần bên trái của hình tam giác lớn hơn */
-            border-right: 275px solid transparent; /* Tạo phần bên phải của hình tam giác lớn hơn */
-            border-top: 120px solid #b0b0b0; /* Màu xám nhạt cho hình tam giác (đỉnh ở giữa và hướng xuống dưới) */
+            border-left: 300px solid transparent; /* Tạo phần bên trái của hình tam giác lớn hơn */
+            border-right: 300px solid transparent; /* Tạo phần bên phải của hình tam giác lớn hơn */
+            border-top: 160px solid #b0b0b0; /* Màu xám nhạt cho hình tam giác (đỉnh ở giữa và hướng xuống dưới) */
             left: 0; /* Đặt bên trái */
             top: 0; /* Đặt phần trên */
             transition: transform 0.8s ease; /* Thêm hiệu ứng chuyển động mềm mại */
@@ -79,7 +79,7 @@
         .message {
             display: none; /* Ẩn nội dung ban đầu */
             text-align: center; /* Căn giữa nội dung */
-            font-size: 75px; /* Thay đổi kích thước chữ */
+            font-size: 75px; /* Thay đổi kích thước chữ nhỏ hơn */
             position: absolute; /* Vị trí tuyệt đối để căn giữa */
             left: 50%; /* Căn giữa theo chiều ngang */
             top: 50%; /* Căn giữa theo chiều dọc */
