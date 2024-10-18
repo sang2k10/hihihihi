@@ -79,7 +79,7 @@
         .message {
             display: none; /* Ẩn nội dung ban đầu */
             text-align: center; /* Căn giữa nội dung */
-            font-size: 40px; /* Thay đổi kích thước chữ nhỏ hơn */
+            font-size: 20px; /* Thay đổi kích thước chữ nhỏ hơn */
             position: absolute; /* Vị trí tuyệt đối để căn giữa */
             left: 50%; /* Căn giữa theo chiều ngang */
             top: 50%; /* Căn giữa theo chiều dọc */
@@ -177,7 +177,7 @@
             if (index < message.length) {
                 messageDiv.innerHTML += message.charAt(index);
                 index++;
-                setTimeout(showNextCharacter, 100); // Thời gian hiển thị giữa các ký tự (100ms)
+                setTimeout(showNextCharacter, 30); // Thời gian hiển thị giữa các ký tự (100ms)
             }
         }
 
