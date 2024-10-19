@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just for you</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> <!-- Thêm Google Font -->
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Pacifico', cursive; /* Sử dụng font chữ Pacifico */
             background-color: #ffcccb; /* Nền hồng nhạt */
             display: flex;
             justify-content: center;
@@ -40,7 +41,7 @@
         .image-container {
             display: none; /* Ẩn hình ảnh ban đầu */
             position: absolute;
-            left: 60%;
+            left: 62%;
             top: 20%;
             transform: translate(-50%, -50%);
             opacity: 0; /* Khởi tạo độ mờ cho hình ảnh */
@@ -195,7 +196,7 @@
             if (subIndex < subheader.length) {
                 subheaderDiv.innerHTML += subheader.charAt(subIndex);
                 subIndex++;
-                setTimeout(showNextSubCharacter, 75); // Thời gian hiển thị giữa các ký tự (150ms)
+                setTimeout(showNextSubCharacter, 75); // Thời gian hiển thị giữa các ký tự (75ms)
             }
         }
 
@@ -216,7 +217,7 @@
             if (index < message.length) {
                 messageDiv.innerHTML += message.charAt(index);
                 index++;
-                setTimeout(showNextCharacter, 30); // Thời gian hiển thị giữa các ký tự (100ms)
+                setTimeout(showNextCharacter, 30); // Thời gian hiển thị giữa các ký tự (30ms)
             } else {
                 // Hiển thị hoa và trái tim sau khi nội dung đã hoàn tất
                 flowers.forEach(flower => {
@@ -241,7 +242,6 @@
 
     // Gọi hàm để hiển thị tiêu đề
     displayHeader();
-
 </script>
 
 </body>
