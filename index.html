@@ -15,61 +15,62 @@
             margin: 0;
             overflow: hidden; /* Ẩn thanh cuộn */
             transition: background-color 0.5s ease; /* Hiệu ứng chuyển màu nền */
+            position: relative; /* Để các hình ảnh hoa và trái tim được định vị tương đối */
         }
         .header {
             position: absolute;
-            top: 7%; /* Đặt ở trên cùng bên ngoài hình chữ nhật, chỉnh xuống một chút */
-            left: 50%; /* Căn giữa theo chiều ngang */
-            transform: translateX(-50%); /* Căn giữa hoàn toàn */
-            font-size: 80px; /* Kích thước chữ nhỏ hơn */
-            color: #000; /* Màu chữ */
-            text-align: center; /* Căn giữa */
+            top: 7%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 80px;
+            color: #000;
+            text-align: center;
             display: none; /* Ẩn tiêu đề ban đầu */
         }
         .subheader {
             position: absolute;
-            top: 20%; /* Đặt dưới tiêu đề */
-            left: 50%; /* Căn giữa theo chiều ngang */
-            transform: translateX(-50%); /* Căn giữa hoàn toàn */
-            font-size: 40px; /* Kích thước chữ nhỏ hơn */
-            color: #000; /* Màu chữ */
-            text-align: center; /* Căn giữa */
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            color: #000;
+            text-align: center;
             display: none; /* Ẩn tiêu đề phụ ban đầu */
         }
         .image-container {
             display: none; /* Ẩn hình ảnh ban đầu */
-            position: absolute; /* Vị trí tuyệt đối */
-            left: 62%; /* Căn giữa theo chiều ngang */
-            top: 20%; /* Căn giữa theo chiều dọc, lên một chút */
-            transform: translate(-50%, -50%); /* Căn giữa hoàn toàn */
+            position: absolute;
+            left: 60%;
+            top: 20%;
+            transform: translate(-50%, -50%);
             opacity: 0; /* Khởi tạo độ mờ cho hình ảnh */
             transition: opacity 0.5s ease; /* Hiệu ứng chuyển độ mờ */
         }
         .image-container img {
-            max-width: 35%; /* Kích thước tối đa của hình ảnh (có thể thay đổi) */
+            max-width: 35%; /* Kích thước tối đa của hình ảnh */
             height: auto; /* Để hình ảnh giữ tỷ lệ */
         }
         .container {
             position: relative;
-            width: 400px; /* Chiều rộng hình chữ nhật gấp đôi */
-            height: 250px; /* Chiều cao hình chữ nhật gấp đôi */
-            background-color: white; /* Màu hình chữ nhật */
-            border: 2px solid #999; /* Viền cho hình chữ nhật */
-            border-radius: 5px; /* Bo góc nhẹ cho hình chữ nhật */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thêm bóng cho hình chữ nhật */
-            cursor: pointer; /* Con trỏ chuột dạng tay */
+            width: 400px;
+            height: 250px;
+            background-color: white;
+            border: 2px solid #999;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
             overflow: hidden; /* Ẩn phần nội dung vượt ra ngoài */
             perspective: 1000px; /* Tạo không gian 3D */
         }
         .triangle {
             position: absolute;
-            width: 0; /* Kích thước ban đầu */
-            height: 0; /* Kích thước ban đầu */
-            border-left: 200px solid transparent; /* Tạo phần bên trái của hình tam giác lớn hơn */
-            border-right: 200px solid transparent; /* Tạo phần bên phải của hình tam giác lớn hơn */
-            border-top: 100px solid #b0b0b0; /* Màu xám nhạt cho hình tam giác (đỉnh ở giữa và hướng xuống dưới) */
-            left: 0; /* Đặt bên trái */
-            top: 0; /* Đặt phần trên */
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-top: 100px solid #b0b0b0; /* Màu xám nhạt cho hình tam giác */
+            left: 0;
+            top: 0;
             transition: transform 0.8s ease; /* Thêm hiệu ứng chuyển động mềm mại */
             transform-origin: 50% 0; /* Đặt điểm lật ở giữa dưới cùng */
         }
@@ -78,14 +79,42 @@
         }
         .message {
             display: none; /* Ẩn nội dung ban đầu */
-            text-align: center; /* Căn giữa nội dung */
-            font-size: 20px; /* Thay đổi kích thước chữ nhỏ hơn */
-            position: absolute; /* Vị trí tuyệt đối để căn giữa */
-            left: 50%; /* Căn giữa theo chiều ngang */
-            top: 50%; /* Căn giữa theo chiều dọc */
-            transform: translate(-50%, -50%); /* Căn giữa hoàn toàn */
+            text-align: center;
+            font-size: 20px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             margin: 0; /* Đặt lề bằng 0 để căn giữa chính xác */
         }
+
+        /* Thêm các hình ảnh trái tim và hoa */
+        .flower, .heart {
+            position: absolute;
+            width: 80px; /* Kích thước lớn hơn cho hoa và trái tim */
+            height: 80px;
+            background-size: cover; /* Đảm bảo hình ảnh chiếm toàn bộ khung */
+            z-index: -1; /* Đặt dưới các phần tử khác */
+            opacity: 0; /* Khởi tạo độ mờ cho hoa và trái tim */
+            transform: scale(0); /* Khởi tạo kích thước nhỏ */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Hiệu ứng chuyển độ mờ và phóng to */
+        }
+
+        .flower {
+            background-image: url('flower.png'); /* Đường dẫn tới file bông hoa */
+        }
+
+        .heart {
+            background-image: url('heart.png'); /* Đường dẫn tới file trái tim */
+        }
+
+        /* Định vị nhiều hoa và trái tim khác nhau */
+        .flower1 { top: 10%; left: 10%; }
+        .flower2 { top: 70%; left: 20%; }
+        .flower3 { top: 30%; right: 10%; }
+        .heart1 { bottom: 20%; left: 40%; }
+        .heart2 { bottom: 40%; right: 30%; }
+        .heart3 { top: 50%; left: 80%; }
     </style>
 </head>
 <body>
@@ -99,6 +128,14 @@
     <div class="triangle"></div> <!-- Hình tam giác màu xám nhạt -->
 </div>
 <div class="message" id="message"></div> <!-- Phần tử hiển thị nội dung -->
+
+<!-- Hình trái tim và hoa -->
+<div class="flower flower1"></div>
+<div class="flower flower2"></div>
+<div class="flower flower3"></div>
+<div class="heart heart1"></div>
+<div class="heart heart2"></div>
+<div class="heart heart3"></div>
 
 <script>
     function toggleOpen() {
@@ -123,7 +160,7 @@
                 // Hiển thị hình ảnh sau khi dòng chữ đã xuất hiện 50%
                 setTimeout(() => {
                     imageContainer.style.opacity = 1; // Hiện hình ảnh
-                }, 700); // Thời gian chờ để hình ảnh xuất hiện (có thể điều chỉnh)
+                }, 1500); // Thời gian chờ để hình ảnh xuất hiện (có thể điều chỉnh)
                 
                 displayMessage(); // Hiển thị nội dung
             }, 800); // Thời gian chờ (800ms) phải bằng thời gian hiệu ứng lật tam giác
@@ -158,7 +195,7 @@
             if (subIndex < subheader.length) {
                 subheaderDiv.innerHTML += subheader.charAt(subIndex);
                 subIndex++;
-                setTimeout(showNextSubCharacter, 150); // Thời gian hiển thị giữa các ký tự (150ms)
+                setTimeout(showNextSubCharacter, 75); // Thời gian hiển thị giữa các ký tự (150ms)
             }
         }
 
@@ -167,6 +204,8 @@
 
     function displayMessage() {
         const messageDiv = document.getElementById('message');
+        const flowers = document.querySelectorAll('.flower');
+        const hearts = document.querySelectorAll('.heart');
         messageDiv.style.display = 'block'; // Hiện phần tử nội dung
 
         // Nội dung của bạn
@@ -178,6 +217,22 @@
                 messageDiv.innerHTML += message.charAt(index);
                 index++;
                 setTimeout(showNextCharacter, 30); // Thời gian hiển thị giữa các ký tự (100ms)
+            } else {
+                // Hiển thị hoa và trái tim sau khi nội dung đã hoàn tất
+                flowers.forEach(flower => {
+                    flower.style.display = 'block';
+                    setTimeout(() => {
+                        flower.style.opacity = 1; // Hiện độ mờ
+                        flower.style.transform = 'scale(1)'; // Phóng to về kích thước gốc
+                    }, 500); // Thời gian chờ để bắt đầu hiệu ứng phóng to
+                });
+                hearts.forEach(heart => {
+                    heart.style.display = 'block';
+                    setTimeout(() => {
+                        heart.style.opacity = 1; // Hiện độ mờ
+                        heart.style.transform = 'scale(1)'; // Phóng to về kích thước gốc
+                    }, 500); // Thời gian chờ để bắt đầu hiệu ứng phóng to
+                });
             }
         }
 
